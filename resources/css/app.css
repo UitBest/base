@@ -1,0 +1,8 @@
+/* Remove uppercase from every element like buttons, tab headers, etc. */
+* {
+    text-transform: none !important;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
