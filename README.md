@@ -9,7 +9,7 @@
 
 # Hier is een lijst met dingen die je moet doen:
 ## Clone repo en verwijder link
-- ```git clone "https://github.com/UitBest/base.git" && cd base && rm -rf .git && git init```
+- ```mkdir newApp && git clone "https://github.com/UitBest/base.git" . && cd newApp && rm -rf .git && git init```
 
 ## Installeer maar
 - ```cp .env.example .env && npm install && composer install && php artisan key:generate```
