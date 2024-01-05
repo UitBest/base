@@ -30,5 +30,9 @@ export default createVuetify({
             dark,
         },
     },
-
+    defaults: {
+        VSheet: {
+            color: 'transparent',
+        },
+    },
 });

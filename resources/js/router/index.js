@@ -1,10 +1,22 @@
 import { createWebHistory, createRouter } from 'vue-router';
+import { ref } from 'vue';
 
 const routes = [
     {
         path: '',
         name: 'Layout',
         component: () => import('@/layouts/Layout.vue'),
+        redirect: { name: 'Home' },
+        meta: {
+            mobile: ref(false),
+        },
+        children: [
+            {
+                path: 'home',
+                name: 'Home',
+                component: () => import('@/views/Home.vue'),
+            },
+        ],
     },
 ];
 

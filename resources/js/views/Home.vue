@@ -1,6 +1,6 @@
 <template>
     <h1>
-       Main content of the page
+       Home, I'm comming home. Home is where ever I'm with you.
     </h1>
 </template>
 

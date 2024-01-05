@@ -1,31 +1,48 @@
 <template>
     <v-app>
-        <v-app-bar
-            v-show="showAppBar"
-            style="z-index: 50"
-        >
-            <v-btn icon>
-                <v-icon>mdi-home</v-icon>
-            </v-btn>
-            <v-btn icon>
-                <v-icon>mdi-account</v-icon>
-            </v-btn>
-            <v-btn icon>
-                <v-icon>mdi-briefcase</v-icon>
-            </v-btn>
-            <v-btn icon>
-                <v-icon>mdi-email</v-icon>
-            </v-btn>
-        </v-app-bar>
+        <v-fade-transition>
+            <v-app-bar
+                v-show="showAppBar"
+                color="navbar"
+                density="comfortable"
+                style="z-index: 50"
+            >
+                <v-sheet
+                    class="mx-auto w-100 h-100 py-2 align-center d-flex"
+                    :class="mobile && 'px-4'"
+                    color="transparent"
+                    max-width="64rem"
+                >
+                    <v-btn
+                        v-for="(item, key) in navBarItems"
+                        :key="key"
+                        class="mr-1"
+                        height="100%"
+                        :icon="mobile"
+                    >
+                        <v-tooltip v-if="mobile" activator="parent" location="bottom">
+                            <div>{{ item.name }}</div>
+                        </v-tooltip>
+
+                        <v-icon v-show="mobile" :icon="item.icon" />
+
+                        <span v-show="! mobile">{{ item.name }}</span>
+                        <template v-if="! mobile" v-slot:prepend>
+                            <v-icon :icon="item.icon" />
+                        </template>
+                    </v-btn>
+                </v-sheet>
+            </v-app-bar>
+        </v-fade-transition>
 
         <v-main>
             <v-sheet
                 ref="content"
-                 class="mx-auto mt-4"
-                 color="page"
-                 elevation="10"
-                 max-width="64rem"
-                 rounded="t-xl"
+                class="mx-auto my-4 px-4 py-2"
+                elevation="10"
+                max-width="64rem"
+                min-height="90svh"
+                rounded="xl"
             >
                 <router-view />
             </v-sheet>
@@ -34,12 +51,46 @@
 </template>
 
 <script setup>
-    import { onMounted, onUnmounted, ref } from 'vue';
+    import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
+    import { useDisplay } from 'vuetify';
+    import { useRoute } from 'vue-router';
+
+    const route = useRoute();
+
+    const navBarItems = [
+        {
+            icon: 'mdi-home',
+            name: 'Home',
+            to: { name: 'Home' },
+        },
+        {
+            icon: 'mdi-toolbox',
+            name: 'Producten',
+        },
+        {
+            icon: 'mdi-account-wrench',
+            name: 'Service',
+        },
+        {
+            icon: 'mdi-email',
+            name: 'Contact',
+        },
+    ];
 
     const content = ref(null);
     const showAppBar = ref(true);
     let lastScrollPosition = 0;
     let lastAppBarPosition = 0;
+
+    const display = useDisplay();
+    const mobile = computed(() => route.meta.mobile.value);
+
+    watch(
+        display.smAndDown,
+        (value) => {
+            route.meta.mobile.value = value;
+        },
+    );
 
     const handleScroll = () => {
         const currentScrollPosition = window.scrollY || document.documentElement.scrollTop;
