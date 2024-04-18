@@ -1,0 +1,74 @@
+version: '3.8'
+services:
+    app:
+        image: framazon_app:latest
+        container_name: base_app
+        build:
+            context: .
+            dockerfile: Dockerfile
+            target: app
+        tty: true
+        stdin_open: true
+        volumes:
+            - .:/var/www
+        restart: unless-stopped
+        networks:
+            - base
+
+    serve:
+        image: base_serve:latest
+        container_name: base_serve
+        build:
+            context: .
+            dockerfile: Dockerfile
+            target: serve
+        ports:
+            - "8000:8000"
+        tty: false
+        stdin_open: false
+        volumes:
+            - .:/var/www
+        restart: unless-stopped
+        networks:
+            - base
+
+    dev:
+        image: base_dev:latest
+        container_name: base_dev
+        build:
+            context: .
+            dockerfile: Dockerfile
+            target: dev
+        ports:
+            - "83:83"
+        tty: false
+        stdin_open: false
+        volumes:
+            - .:/var/www
+        restart: always
+        networks:
+            - base
+
+    db:
+        image: mysql:8.0
+        container_name: base_db
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_DATABASE: laravel
+            MYSQL_ROOT_PASSWORD: root
+            SERVICE_TAGS: dev
+            SERVICE_NAME: mysql
+        volumes:
+            - dbdata:/var/lib/mysql
+        networks:
+            - base
+
+networks:
+    base:
+
+volumes:
+    dbdata:
+        driver: local
