@@ -1,7 +1,7 @@
 version: '3.8'
 services:
     app:
-        image: framazon_app:latest
+        image: base_app:latest
         container_name: base_app
         build:
             context: .
@@ -65,7 +65,6 @@ services:
             - dbdata:/var/lib/mysql
         networks:
             - base
-
 networks:
     base:
 

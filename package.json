@@ -29,6 +29,8 @@
     },
     "dependencies": {
         "@weapnl/js-junction": "^0.0.9",
+        "composer": "^4.1.0",
+        "i": "^0.3.7",
         "lodash": "^4.17.21",
         "luxon": "^3.4.0",
         "pinia": "^2.1.6",
