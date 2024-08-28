@@ -14,7 +14,7 @@ const routes = [
             {
                 path: 'home',
                 name: 'Home',
-                component: () => import('@/js/views/Home.vue'),
+                component: () => import('../views/Home.vue'),
             },
         ],
     },
@@ -23,7 +23,7 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(),
     routes,
-    scrollBehavior (to, from, savedPosition) {
+    scrollBehavior(to, from, savedPosition) {
         if (to.hash) {
             return {
                 el: to.hash,

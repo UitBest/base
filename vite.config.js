@@ -12,7 +12,7 @@ export default defineConfig({
             host: process.env.HMR_HOST || 'localhost',
         },
         warmup: {
-            clientFiles: ['resources/js/layouts/layout.vue'],
+            clientFiles: ['resources/js/layouts/Layout.vue'],
         },
     },
     resolve: {

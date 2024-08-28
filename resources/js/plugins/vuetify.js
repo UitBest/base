@@ -11,13 +11,13 @@ const light = {
     // },
 };
 
-const dark = {
-    dark: true,
-    // colors: {
-    //     primary: '',
-    //     secondary: '',
-    // },
-};
+// const dark = {
+//     dark: true,
+//     colors: {
+//         primary: '',
+//         secondary: '',
+//     },
+// };
 
 export default createVuetify({
     blueprint: md3,
@@ -27,7 +27,7 @@ export default createVuetify({
         defaultTheme: 'light',
         themes: {
             light,
-            dark,
+            // dark,
         },
     },
     defaults: {
