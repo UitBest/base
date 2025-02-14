@@ -8,9 +8,6 @@
     },
     "devDependencies": {
         "@vitejs/plugin-vue": "^4.2.3",
-        "@vue/cli-plugin-eslint": "^5.0.0-beta.7",
-        "@vue/cli-plugin-router": "^5.0.8",
-        "@vue/cli-service": "^5.0.8",
         "@vue/eslint-config-standard": "^8.0.1",
         "axios": "^1.6.1",
         "eslint": "^8.57.0",
@@ -39,7 +36,6 @@
         "pinia-plugin-persist": "^1.0.0",
         "vite-plugin-vuetify": "^2.0.3",
         "vue": "^3.4.27",
-        "vue-apexcharts": "^1.6.2",
         "vue-router": "^4.2.4",
         "vuetify": "^3.6.3"
     }
